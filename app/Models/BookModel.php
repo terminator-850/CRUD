@@ -4,16 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class LibroModel extends Model
+class BookModel extends Model
 {
-    protected $table            = 'libros';
+    protected $table            = 'books';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $allowedFields    = ['titulo', 'sinopsis', 'paginas', 'fecha_publicacion'];
+    protected $allowedFields    = ['title', 'synopsis', 'pages', 'publication_date'];
 
-    // Fechas automáticas para control del sistema
+    // Dates
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
-} 
+}
