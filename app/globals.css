@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --uagrm-blue: #002855;       /* Azul institucional UAGRM */
+    --uagrm-dark-blue: #001a38;  /* Azul oscuro para Header / Footer */
+    --uagrm-gold: #d4af37;       /* Amarillo / Dorado institucional */
+  }
+}
