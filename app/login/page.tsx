@@ -1,79 +1,123 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
-export default function LoginPage() {
-  const router = useRouter();
-  const [codigoDocente, setCodigoDocente] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!codigoDocente || !password) {
-      setError('Por favor ingrese su código de docente y contraseña');
-      return;
-    }
-    // Redirige al panel del docente
-    router.push('/docente/dashboard');
-  };
+export default function SelectorPerfilPage() {
+  // Configura aquí los enlaces a donde quieras redirigir cada opción inferior
+  const linkOlvidastePassword = "https://perfil.uagrm.edu.bo/recuperar"; // Reemplaza con tu link
+  const linkHabilitacionCobros = "https://pagos.uagrm.edu.bo/externos"; // Reemplaza con tu link
 
   return (
-    <div className="min-h-screen bg-[#002855] flex items-center justify-center p-4">
-      <div className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md border-t-4 border-[#d4af37]">
-        <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-[#001a38]">PORTAL DOCENTE</h2>
-          <p className="text-sm text-gray-600">Escuela de Postgrado - UAGRM</p>
-        </div>
-
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4 text-sm">
-            {error}
+    <div className="min-h-screen bg-white flex flex-col items-center justify-between py-12 px-4 font-sans text-gray-800">
+      
+      {/* Encabezado: Isotipo y Logo Oficial UAGRM */}
+      <div className="flex flex-col items-center mb-8">
+        <div className="flex items-center gap-3">
+          {/* Escudo / Sello UAGRM */}
+          <div className="w-16 h-16 border-2 border-gray-400 rounded-full flex items-center justify-center p-1">
+            <div className="w-full h-full border border-gray-300 rounded-full flex items-center justify-center font-serif text-gray-600 font-bold text-xs text-center leading-none">
+              UAGRM
+            </div>
           </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
-              Código de Docente
-            </label>
-            <input
-              type="text"
-              placeholder="Ej. DOC-2026-88"
-              value={codigoDocente}
-              onChange={(e) => setCodigoDocente(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#002855] outline-none text-black"
-            />
+          {/* Texto Institucional */}
+          <div className="flex flex-col">
+            <span className="font-serif text-gray-500 text-lg tracking-widest leading-none">
+              Universidad Autónoma
+            </span>
+            <span className="font-serif text-gray-700 text-3xl font-bold tracking-tight leading-tight">
+              Gabriel René Moreno
+            </span>
           </div>
-
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
-              Contraseña
-            </label>
-            <input
-              type="password"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#002855] outline-none text-black"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-[#d4af37] text-[#001a38] font-bold py-2 px-4 rounded-lg hover:bg-yellow-500 transition duration-200 shadow-md"
-          >
-            Iniciar Sesión
-          </button>
-        </form>
-
-        <div className="mt-6 text-center">
-          <a href="#" className="text-xs text-gray-500 hover:underline">
-            ¿Olvidaste tu contraseña o código de acceso?
-          </a>
         </div>
       </div>
+
+      {/* Bloque Central de Selección */}
+      <main className="flex flex-col items-center text-center my-auto space-y-6">
+        <h1 className="text-3xl font-bold text-[#b91c1c] tracking-wide">
+          Bienvenido al Perfil
+        </h1>
+        
+        <h2 className="text-xl font-bold text-[#0284c7] mb-4">
+          Elige tu tipo de cuenta
+        </h2>
+
+        {/* Tarjetas de Selección de Tipo de Usuario */}
+        <div className="flex flex-wrap justify-center gap-4 my-4">
+          
+          {/* Opción 1: Estudiante */}
+          <Link
+            href="/estudiante/login"
+            className="w-32 h-32 bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded flex flex-col items-center justify-center p-4 transition-all shadow-sm hover:shadow group cursor-pointer"
+            title="Ingreso Estudiante"
+          >
+            <div className="text-4xl text-gray-800 mb-1 group-hover:scale-110 transition-transform">
+              🧑‍🎓
+            </div>
+            <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">
+              Estudiante
+            </span>
+          </Link>
+
+          {/* Opción 2: Docente */}
+          <Link
+            href="/docente/login"
+            className="w-32 h-32 bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded flex flex-col items-center justify-center p-4 transition-all shadow-sm hover:shadow group cursor-pointer"
+            title="Ingreso Docente"
+          >
+            <div className="text-4xl text-gray-800 mb-1 group-hover:scale-110 transition-transform">
+              👨‍🏫
+            </div>
+            <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">
+              Docente
+            </span>
+          </Link>
+
+          {/* Opción 3: Administrativo */}
+          <Link
+            href="/administrativo/login"
+            className="w-32 h-32 bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded flex flex-col items-center justify-center p-4 transition-all shadow-sm hover:shadow group cursor-pointer"
+            title="Ingreso Administrativo"
+          >
+            <div className="text-4xl text-gray-800 mb-1 group-hover:scale-110 transition-transform">
+              👨‍💻
+            </div>
+            <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">
+              Administrativo
+            </span>
+          </Link>
+
+        </div>
+
+        {/* Enlaces de Ayuda con redirección editable */}
+        <div className="pt-8 space-y-3">
+          <div>
+            <a
+              href={linkOlvidastePassword}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0284c7] font-bold text-sm hover:underline"
+            >
+              ¿Olvidaste tu contraseña?
+            </a>
+          </div>
+
+          <div>
+            <a
+              href={linkHabilitacionCobros}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0284c7] font-bold text-sm hover:underline"
+            >
+              Habilitación de servicios de cobros para personas externas
+            </a>
+          </div>
+        </div>
+      </main>
+
+      {/* Pie de página mínimo */}
+      <footer className="text-xs text-gray-400 text-center mt-8">
+        © {new Date().getFullYear()} Universidad Autónoma Gabriel René Moreno - DTIC
+      </footer>
     </div>
   );
 }

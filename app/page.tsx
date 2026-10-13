@@ -1,40 +1,114 @@
-import { mockPrograms } from "@/data/programs";
-import { ProgramCard } from "@/components/ProgramCard";
+'use client';
+
+import Link from 'next/link';
 
 export default function Home() {
-  return (
-    <div>
-      {/* Banner Institucional Principal */}
-      <section className="bg-[#002855] text-white py-16 px-4 text-center border-b-4 border-[#d4af37]">
-        <div className="max-w-4xl mx-auto space-y-4">
-          <span className="bg-[#d4af37] text-[#001a38] text-xs font-bold px-3 py-1 rounded-full uppercase">
-            Convocatorias Abiertas 2026
-          </span>
-          <h1 className="text-3xl md:text-5xl font-black">
-            Impulsa tu Carrera Profesional en Postgrado UAGRM
-          </h1>
-          <p className="text-sm md:text-base text-gray-200">
-            Diplomados, Maestrías y Doctorados con estándar de excelencia académica.
-          </p>
-        </div>
-      </section>
+  const linkOlvidastePassword = "https://perfil.uagrm.edu.bo/recuperar";
+  const linkHabilitacionCobros = "https://pagos.uagrm.edu.bo/externos";
 
-      {/* Sección de Programas Destacados */}
-      <section className="max-w-7xl mx-auto px-4 py-12">
-        <div className="flex justify-between items-center mb-8 border-b pb-4">
-          <div>
-            <h2 className="text-2xl font-bold text-[#001a38]">Oferta Académica Destacada</h2>
-            <p className="text-xs text-gray-500">Programas disponibles para inscripciones inmediatas</p>
+  return (
+    <div className="min-h-screen bg-white flex flex-col items-center justify-between py-12 px-4 font-sans text-gray-800">
+      
+      {/* Encabezado: Logo Institucional Centrado */}
+      <div className="flex flex-col items-center mb-6">
+        <div className="flex items-center gap-3">
+          <div className="w-16 h-16 border-2 border-gray-400 rounded-full flex items-center justify-center p-1">
+            <div className="w-full h-full border border-gray-300 rounded-full flex items-center justify-center font-serif text-gray-600 font-bold text-xs text-center leading-none">
+              UAGRM
+            </div>
+          </div>
+          <div className="flex flex-col">
+            <span className="font-serif text-gray-500 text-lg tracking-widest leading-none">
+              Universidad Autónoma
+            </span>
+            <span className="font-serif text-gray-700 text-3xl font-bold tracking-tight leading-tight">
+              Gabriel René Moreno
+            </span>
           </div>
         </div>
+      </div>
 
-        {/* Grilla de Programas */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {mockPrograms.map((program) => (
-            <ProgramCard key={program.id} program={program} />
-          ))}
+      {/* Bloque Central de Selección */}
+      <main className="flex flex-col items-center text-center my-auto space-y-6">
+        <h1 className="text-3xl font-bold text-[#b91c1c] tracking-wide">
+          Bienvenido al Perfil
+        </h1>
+        
+        <h2 className="text-xl font-bold text-[#0284c7] mb-4">
+          Elige tu tipo de cuenta
+        </h2>
+
+        {/* Opciones de Selección con Imágenes Personalizadas */}
+        <div className="flex flex-wrap justify-center gap-6 my-4">
+          
+          {/* Opción 1: Estudiante */}
+          <Link
+            href="/estudiante/login"
+            className="w-40 h-40 bg-gray-50 hover:bg-gray-100 border border-gray-300 rounded-xl flex flex-col items-center justify-center p-4 transition-all shadow-sm hover:shadow-md group cursor-pointer"
+            title="Ingreso Estudiante"
+          >
+            <div className="w-16 h-16 mb-2 relative flex items-center justify-center group-hover:scale-105 transition-transform">
+              <img 
+                src="/estudiante-icon.png" 
+                alt="Estudiante" 
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
+            <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">
+              ESTUDIANTE
+            </span>
+          </Link>
+
+          {/* Opción 2: Docente */}
+          <Link
+            href="/docente/login"
+            className="w-40 h-40 bg-gray-50 hover:bg-gray-100 border border-gray-300 rounded-xl flex flex-col items-center justify-center p-4 transition-all shadow-sm hover:shadow-md group cursor-pointer"
+            title="Ingreso Docente"
+          >
+            <div className="w-16 h-16 mb-2 relative flex items-center justify-center group-hover:scale-105 transition-transform">
+              <img 
+                src="/docente-icon.png" 
+                alt="Docente" 
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
+            <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">
+              DOCENTE
+            </span>
+          </Link>
+
         </div>
-      </section>
+
+        {/* Enlaces Inferiores con Redirección */}
+        <div className="pt-8 space-y-3">
+          <div>
+            <a
+              href={linkOlvidastePassword}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0284c7] font-bold text-sm hover:underline"
+            >
+              ¿Olvidaste tu contraseña?
+            </a>
+          </div>
+
+          <div>
+            <a
+              href={linkHabilitacionCobros}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0284c7] font-bold text-sm hover:underline"
+            >
+              Habilitación de servicios de cobros para personas externas
+            </a>
+          </div>
+        </div>
+      </main>
+
+      {/* Pie de página oficial */}
+      <footer className="text-xs text-gray-400 text-center mt-8">
+        © {new Date().getFullYear()} Universidad Autónoma Gabriel René Moreno - DTIC
+      </footer>
     </div>
   );
 }

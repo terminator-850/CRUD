@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Escuela de Postgrado | UAGRM",
-  description: "Portal Oficial de la Escuela de Postgrado de la Universidad Autónoma Gabriel René Moreno",
+  title: "Perfil UAGRM | Sistema de Gestión Académica",
+  description: "Portal Oficial de Acceso para Estudiantes y Docentes de la UAGRM",
 };
 
 export default function RootLayout({
@@ -15,10 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
-        <Header />
+      <body className="bg-white text-gray-900 flex flex-col min-h-screen">
         <main className="flex-grow">{children}</main>
-        <Footer />
       </body>
     </html>
   );
